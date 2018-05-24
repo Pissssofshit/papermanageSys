@@ -2,7 +2,7 @@ package com.example.rank.model;
 
 import java.util.Date;
 
-public class paper {
+public class Paper {
     private Long id;
 
     private String title;

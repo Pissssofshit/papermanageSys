@@ -1,6 +1,6 @@
 package com.example.rank.model;
 
-public class logCheckPaper {
+public class LogCheckPaper {
     private Long id;
 
     private Long paperid;

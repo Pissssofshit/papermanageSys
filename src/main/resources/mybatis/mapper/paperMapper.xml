@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.rank.dao.paperMapper">
-  <resultMap id="BaseResultMap" type="com.example.rank.model.paper">
+<mapper namespace="com.example.rank.dao.PaperMapper">
+  <resultMap id="BaseResultMap" type="com.example.rank.model.Paper">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="createdtime" jdbcType="TIMESTAMP" property="createdtime" />
@@ -10,7 +10,7 @@
     <result column="read_num" jdbcType="INTEGER" property="readNum" />
     <result column="state" jdbcType="VARCHAR" property="state" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.rank.model.paper">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.rank.model.Paper">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -31,7 +31,7 @@
     delete from tb_paper
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.example.rank.model.paper">
+  <insert id="insert" parameterType="com.example.rank.model.Paper">
     insert into tb_paper (id, title, createdtime, 
       updatedtime, userId, read_num, 
       state, content)
@@ -39,7 +39,7 @@
       #{updatedtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=BIGINT}, #{readNum,jdbcType=INTEGER}, 
       #{state,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.rank.model.paper">
+  <insert id="insertSelective" parameterType="com.example.rank.model.Paper">
     insert into tb_paper
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.rank.model.paper">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.rank.model.Paper">
     update tb_paper
     <set>
       <if test="title != null">
@@ -121,7 +121,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.rank.model.paper">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.rank.model.Paper">
     update tb_paper
     set title = #{title,jdbcType=VARCHAR},
       createdtime = #{createdtime,jdbcType=TIMESTAMP},
@@ -132,7 +132,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.rank.model.paper">
+  <update id="updateByPrimaryKey" parameterType="com.example.rank.model.Paper">
     update tb_paper
     set title = #{title,jdbcType=VARCHAR},
       createdtime = #{createdtime,jdbcType=TIMESTAMP},

@@ -109,7 +109,7 @@
                     <configurationFile>${basedir}/src/main/resources/mybatis/generatorConfig.xml</configurationFile>
                     <!-- 生成部分mapper,指定table名字 -->
                     <tableNames>
-                        tb_log_check_paper
+                        tb_paper_type
                     </tableNames>
                 </configuration>
             </plugin>

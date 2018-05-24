@@ -1,17 +1,17 @@
 package com.example.rank.dao;
 
-import com.example.rank.model.logCheckPaper;
+import com.example.rank.model.LogCheckPaper;
 
-public interface logCheckPaperMapper {
+public interface LogCheckPaperMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(logCheckPaper record);
+    int insert(LogCheckPaper record);
 
-    int insertSelective(logCheckPaper record);
+    int insertSelective(LogCheckPaper record);
 
-    logCheckPaper selectByPrimaryKey(Long id);
+    LogCheckPaper selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(logCheckPaper record);
+    int updateByPrimaryKeySelective(LogCheckPaper record);
 
-    int updateByPrimaryKey(logCheckPaper record);
+    int updateByPrimaryKey(LogCheckPaper record);
 }

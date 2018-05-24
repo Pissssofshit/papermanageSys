@@ -1,6 +1,6 @@
 package com.example.rank.model;
 
-public class user {
+public class User {
     private Long id;
 
     private String name;

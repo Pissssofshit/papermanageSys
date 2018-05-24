@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.rank.dao.logCheckPaperMapper">
-  <resultMap id="BaseResultMap" type="com.example.rank.model.logCheckPaper">
+<mapper namespace="com.example.rank.dao.LogCheckPaperMapper">
+  <resultMap id="BaseResultMap" type="com.example.rank.model.LogCheckPaper">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="paperId" jdbcType="BIGINT" property="paperid" />
     <result column="checkUserId" jdbcType="BIGINT" property="checkuserid" />
@@ -21,13 +21,13 @@
     delete from tb_log_check_paper
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.example.rank.model.logCheckPaper">
+  <insert id="insert" parameterType="com.example.rank.model.LogCheckPaper">
     insert into tb_log_check_paper (id, paperId, checkUserId, 
       firstState, updatedState)
     values (#{id,jdbcType=BIGINT}, #{paperid,jdbcType=BIGINT}, #{checkuserid,jdbcType=BIGINT}, 
       #{firststate,jdbcType=VARCHAR}, #{updatedstate,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.rank.model.logCheckPaper">
+  <insert id="insertSelective" parameterType="com.example.rank.model.LogCheckPaper">
     insert into tb_log_check_paper
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.rank.model.logCheckPaper">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.rank.model.LogCheckPaper">
     update tb_log_check_paper
     <set>
       <if test="paperid != null">
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.rank.model.logCheckPaper">
+  <update id="updateByPrimaryKey" parameterType="com.example.rank.model.LogCheckPaper">
     update tb_log_check_paper
     set paperId = #{paperid,jdbcType=BIGINT},
       checkUserId = #{checkuserid,jdbcType=BIGINT},

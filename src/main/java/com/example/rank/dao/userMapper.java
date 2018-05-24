@@ -1,17 +1,17 @@
 package com.example.rank.dao;
 
-import com.example.rank.model.user;
+import com.example.rank.model.User;
 
-public interface userMapper {
+public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(user record);
+    int insert(User record);
 
-    int insertSelective(user record);
+    int insertSelective(User record);
 
-    user selectByPrimaryKey(Long id);
+    User selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(user record);
+    int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(user record);
+    int updateByPrimaryKey(User record);
 }

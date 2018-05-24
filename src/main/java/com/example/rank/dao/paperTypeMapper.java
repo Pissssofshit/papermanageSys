@@ -1,17 +1,17 @@
 package com.example.rank.dao;
 
-import com.example.rank.model.paperType;
+import com.example.rank.model.PaperType;
 
-public interface paperTypeMapper {
+public interface PaperTypeMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(paperType record);
+    int insert(PaperType record);
 
-    int insertSelective(paperType record);
+    int insertSelective(PaperType record);
 
-    paperType selectByPrimaryKey(Long id);
+    PaperType selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(paperType record);
+    int updateByPrimaryKeySelective(PaperType record);
 
-    int updateByPrimaryKey(paperType record);
+    int updateByPrimaryKey(PaperType record);
 }
