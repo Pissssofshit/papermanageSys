@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rank.dao.logCheckPaperMapper">
+  <resultMap id="BaseResultMap" type="com.example.rank.model.logCheckPaper">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="paperId" jdbcType="BIGINT" property="paperid" />
+    <result column="checkUserId" jdbcType="BIGINT" property="checkuserid" />
+    <result column="firstState" jdbcType="VARCHAR" property="firststate" />
+    <result column="updatedState" jdbcType="VARCHAR" property="updatedstate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, paperId, checkUserId, firstState, updatedState
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_log_check_paper
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_log_check_paper
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.rank.model.logCheckPaper">
+    insert into tb_log_check_paper (id, paperId, checkUserId, 
+      firstState, updatedState)
+    values (#{id,jdbcType=BIGINT}, #{paperid,jdbcType=BIGINT}, #{checkuserid,jdbcType=BIGINT}, 
+      #{firststate,jdbcType=VARCHAR}, #{updatedstate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.rank.model.logCheckPaper">
+    insert into tb_log_check_paper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="paperid != null">
+        paperId,
+      </if>
+      <if test="checkuserid != null">
+        checkUserId,
+      </if>
+      <if test="firststate != null">
+        firstState,
+      </if>
+      <if test="updatedstate != null">
+        updatedState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="paperid != null">
+        #{paperid,jdbcType=BIGINT},
+      </if>
+      <if test="checkuserid != null">
+        #{checkuserid,jdbcType=BIGINT},
+      </if>
+      <if test="firststate != null">
+        #{firststate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedstate != null">
+        #{updatedstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.rank.model.logCheckPaper">
+    update tb_log_check_paper
+    <set>
+      <if test="paperid != null">
+        paperId = #{paperid,jdbcType=BIGINT},
+      </if>
+      <if test="checkuserid != null">
+        checkUserId = #{checkuserid,jdbcType=BIGINT},
+      </if>
+      <if test="firststate != null">
+        firstState = #{firststate,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedstate != null">
+        updatedState = #{updatedstate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.rank.model.logCheckPaper">
+    update tb_log_check_paper
+    set paperId = #{paperid,jdbcType=BIGINT},
+      checkUserId = #{checkuserid,jdbcType=BIGINT},
+      firstState = #{firststate,jdbcType=VARCHAR},
+      updatedState = #{updatedstate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
