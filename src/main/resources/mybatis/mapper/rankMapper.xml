@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rank.dao.rankMapper">
+
+  <sql id="requestAllFields">
+        <![CDATA[
+            id,
+            name,
+            type,
+            updateDate,
+            heat,
+            status
+
+        ]]>
+    </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_ranklist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <select id="getRankBySortType" resultType="com.example.rank.model.rank" parameterType="java.lang.String" >
+    SELECT
+    <include refid="requestAllFields"/>
+    FROM
+    tb_ranklist
+    order by
+    ${sortType} DEC
+
+  </select>
+  <select id="getRank" resultType="com.example.rank.model.rank">
+    SELECT
+    <include refid="requestAllFields"/>
+    FROM
+    tb_ranklist
+
+  </select>
+  <update id="updateHeat" parameterType="java.lang.Integer">
+    UPDATE
+    tb_ranklist
+    SET
+    heat=#{heat}
+    WHERE id#{id}
+  </update>
+</mapper>
