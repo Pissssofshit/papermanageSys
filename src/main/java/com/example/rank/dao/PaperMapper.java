@@ -2,6 +2,8 @@ package com.example.rank.dao;
 
 import com.example.rank.model.Paper;
 
+import java.util.List;
+
 public interface PaperMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,4 +18,5 @@ public interface PaperMapper {
     int updateByPrimaryKeyWithBLOBs(Paper record);
 
     int updateByPrimaryKey(Paper record);
+    List<Paper> getPapers();
 }

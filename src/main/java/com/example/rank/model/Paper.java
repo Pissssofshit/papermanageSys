@@ -18,7 +18,6 @@ public class Paper {
     private String state;
 
     private String content;
-
     public Long getId() {
         return id;
     }
