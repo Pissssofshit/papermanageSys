@@ -22,6 +22,7 @@ public class ArticleController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Paper> papers=articleService.getArticleList();
         Gson gson=new Gson();
+        System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
 }
