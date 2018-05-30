@@ -10,7 +10,7 @@
             updatedtime,
             content,
             userId,
-            read_num,
+            read_num as readNum,
             state
 
         ]]>
@@ -43,4 +43,21 @@
     heat=#{heat}
     WHERE id#{id}
   </update>
+  <select id="getPapersByCon" resultType="com.example.rank.model.Paper">
+    SELECT
+    <include refid="requestAllFields"/>
+    FROM
+    tb_paper
+    <where>
+    <if test="userId != null and userId != ''">
+      AND userId LIKE concat('%',#{userId},'%')
+    </if>
+    <if test="title != null and title != ''">
+      AND title LIKE concat('%',#{title},'%')
+    </if>
+    <if test="state != null and state != ''">
+      AND state=#{state}
+    </if>
+    </where>
+  </select>
 </mapper>
