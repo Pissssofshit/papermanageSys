@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -33,6 +36,26 @@ public class ArticleController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         param.setState(request.getParameter("state"));
         param.setTitle(request.getParameter("title"));
+        DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            if(checknull(request.getParameter("date1"))){
+                param.setCreatedtimeOne(format1.parse(request.getParameter("date1")));
+            }
+            if(checknull(request.getParameter("date2"))){
+                param.setCreatedtimeTwo(format1.parse(request.getParameter("date2")));
+            }
+            if(checknull(request.getParameter("date3"))){
+                param.setUpdatedtimeOne(format1.parse(request.getParameter("date3")));
+            }
+            if(checknull(request.getParameter("date4"))){
+                param.setUpdatedtimeTwo(format1.parse(request.getParameter("date4")));
+            }
+
+            System.out.print(param.getCreatedtimeOne()+"&&&&&&&&");
+        }catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         System.out.print("********************"+request.getParameter("userId")+request.getParameter("date1")+request.getParameter("date2"));
 
         if(request.getParameter("userId")!=null && request.getParameter("userId")!=""){
@@ -44,4 +67,12 @@ public class ArticleController {
         System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
+    static boolean checknull(String date){
+        if(date!=null && date!="") {
+            return true;
+        }
+        return false;
+    }
+
+
 }

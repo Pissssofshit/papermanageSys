@@ -21,7 +21,7 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Paper> getArticleListByCon(PaperParam param) {
         System.out.print(param.getUserid()+param.getTitle()+param.getState());
 
-        return paperMapper.getPapersByCon(param.getUserid(),param.getTitle(),param.getState());
+        return paperMapper.getPapersByCon(param.getUserid(),param.getTitle(),param.getState(),param.getCreatedtimeOne(),param.getCreatedtimeTwo(),param.getUpdatedtimeOne(),param.getUpdatedtimeTwo());
 
 
 

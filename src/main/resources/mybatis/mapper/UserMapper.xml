@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.rank.dao.PaperMapper">
+<mapper namespace="com.example.rank.dao.UserMapper">
 
   <sql id="requestAllFields">
         <![CDATA[
             id,
-            title,
-            createdtime,
-            updatedtime,
-            content,
-            userId,
-            read_num as readNum,
-            state
+            name,
+            type,
+            iphone,
+            password
 
         ]]>
     </sql>
@@ -49,23 +46,34 @@
     FROM
     tb_paper
     <where>
-    <if test="userId != null and userId != ''">
-      AND userId LIKE concat('%',#{userId},'%')
-    </if>
-    <if test="title != null and title != ''">
-      AND title LIKE concat('%',#{title},'%')
-    </if>
-    <if test="state != null and state != ''">
-      AND state=#{state}
-    </if>
-    <if test="createTimeOne !=null  and createTimeTwo !=null">
-      AND createdtime between #{createTimeOne} and #{createTimeTwo}
+      <if test="userId != null and userId != ''">
+        AND userId LIKE concat('%',#{userId},'%')
+      </if>
+      <if test="title != null and title != ''">
+        AND title LIKE concat('%',#{title},'%')
+      </if>
+      <if test="state != null and state != ''">
+        AND state=#{state}
+      </if>
+      <if test="createTimeOne !=null  and createTimeTwo !=null">
+        AND createdtime between #{createTimeOne} and #{createTimeTwo}
 
-    </if>
+      </if>
       <if test="updatedTimeOne !=null  and updatedTimeTwo !=null">
         AND updatedtime between #{updatedTimeOne} and #{updatedTimeTwo}
 
       </if>
     </where>
   </select>
+  <select id="login" resultType="com.example.rank.model.User">
+    select
+    <include refid="requestAllFields" />
+    from tb_user
+    <where>
+      iphone=#{phone}
+      and
+      password=#{password}
+    </where>
+  </select>
+
 </mapper>
