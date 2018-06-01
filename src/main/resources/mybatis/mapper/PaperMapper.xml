@@ -50,7 +50,7 @@
     tb_paper
     <where>
     <if test="userId != null and userId != ''">
-      AND userId LIKE concat('%',#{userId},'%')
+      AND userId={userId}
     </if>
     <if test="title != null and title != ''">
       AND title LIKE concat('%',#{title},'%')

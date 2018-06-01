@@ -1,6 +1,7 @@
 package com.example.rank.controller;
 
 import com.example.rank.model.Paper;
+import com.example.rank.model.User;
 import com.example.rank.param.PaperParam;
 import com.example.rank.service.ArticleService;
 import com.google.gson.Gson;
@@ -27,6 +28,23 @@ public class ArticleController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Paper> papers=articleService.getArticleList();
         Gson gson=new Gson();
+        System.out.print(gson.toJson(papers));
+        return gson.toJson(papers);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getPaperListByUser",method = RequestMethod.GET)
+    public String getArticleListByUser(HttpServletResponse response,PaperParam param,HttpServletRequest request){
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+//        response.setHeader( "Access-Control-Allow-Credentials","true" );
+        /*User user=(User)request.getSession().getId();*/
+        Gson gson=new Gson();
+        System.out.print("222222"+gson.toJson(request.getSession().getId()));
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<Paper> papers=articleService.getArticleListByCon(param);
+         gson=new Gson();
         System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
