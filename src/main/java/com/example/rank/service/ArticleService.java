@@ -1,6 +1,7 @@
 package com.example.rank.service;
 
 import com.example.rank.model.Paper;
+import com.example.rank.param.AddPaperParam;
 import com.example.rank.param.PaperParam;
 
 import java.util.List;
@@ -9,6 +10,7 @@ public interface ArticleService {
     /**
      * 登记文章
      */
+    void addArticle(AddPaperParam param);
 
 
     /**

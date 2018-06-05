@@ -49,8 +49,11 @@
     FROM
     tb_paper
     <where>
+      <if test="id != null and id != ''">
+        AND id=#{id}
+      </if>
     <if test="userId != null and userId != ''">
-      AND userId={userId}
+      AND userId=#{userId}
     </if>
     <if test="title != null and title != ''">
       AND title LIKE concat('%',#{title},'%')
@@ -68,4 +71,34 @@
       </if>
     </where>
   </select>
+
+
+
+
+  <insert id="add" useGeneratedKeys="true" parameterType="com.example.rank.param.AddPaperParam" keyProperty="id">
+    INSERT INTO tb_paper
+
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+      <if test="null!=title and ''!=title">,title</if>
+      <if test="null!=createdtime">,createdtime</if>
+      <if test="null!=updatedtime">,updatedtime</if>
+      <if test="null!=content and ''!=content">,content</if>
+      <if test="null!=userid">,userid</if>
+      <if test="null!=readNum ">,read_num</if>
+      <if test="null!=state" >,state</if>
+
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+      <if test="null!=title and ''!=title">,#{title}</if>
+      <if test="null!=createdtime">,#{createdtime}</if>
+      <if test="null!=updatedtime">,#{updatedtime}</if>
+      <if test="null!=content and ''!=content">,#{content}</if>
+      <if test="null!=userid">,#{userid}</if>
+      <if test="null!=readNum ">,#{readNum}</if>
+      <if test="null!=state" >,#{state}</if>
+
+    </trim>
+
+  </insert>
 </mapper>
