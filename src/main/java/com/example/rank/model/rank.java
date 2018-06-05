@@ -13,7 +13,15 @@ public class rank {
 
     private Integer heat;
 
+    private int typeid;
 
+    public int getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(int typeid) {
+        this.typeid = typeid;
+    }
 
     private String status;
 

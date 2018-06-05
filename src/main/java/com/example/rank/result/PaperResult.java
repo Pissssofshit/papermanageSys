@@ -1,10 +1,10 @@
-package com.example.rank.model;
+package com.example.rank.result;
 
 import java.util.Date;
 
-public class Paper {
+public class PaperResult {
     private Long id;
-    private int typeid;
+    private String type;
     private String title;
 
     private Date createdtime;
@@ -19,20 +19,20 @@ public class Paper {
 
     private String content;
 
-    public int getTypeid() {
-        return typeid;
-    }
-
-    public void setTypeid(int typeid) {
-        this.typeid = typeid;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTitle() {

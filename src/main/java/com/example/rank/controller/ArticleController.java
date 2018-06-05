@@ -34,7 +34,8 @@ public class ArticleController {
         List<Paper> papers=articleService.getArticleListByCon(param);
         for(Paper paper:papers){
             Gson gson=new Gson();
-            return gson.toJson(paper.getContent());
+            System.out.print("2222222222222222"+paper);
+            return gson.toJson(paper);
         }
         return null;
 
@@ -67,7 +68,6 @@ public class ArticleController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Paper> papers=articleService.getArticleList();
         Gson gson=new Gson();
-        System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
     @ResponseBody
@@ -77,16 +77,10 @@ public class ArticleController {
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader( "Access-Control-Allow-Credentials","true" );
-        /*User user=(User)request.getSession().getId();*/
         Gson gson=new Gson();
-        System.out.print("222222"+gson.toJson(request.getSession(false).getId()));
         User user=(User)request.getSession(false).getAttribute("USER");
         param.setUserid(user.getId());
-
-
         List<Paper> papers=articleService.getArticleListByCon(param);
-         gson=new Gson();
-        System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
     @ResponseBody
@@ -109,21 +103,14 @@ public class ArticleController {
             if(checknull(request.getParameter("date4"))){
                 param.setUpdatedtimeTwo(format1.parse(request.getParameter("date4")));
             }
-
-            System.out.print(param.getCreatedtimeOne()+"&&&&&&&&");
         }catch (ParseException e) {
             e.printStackTrace();
         }
-
-        System.out.print("********************"+request.getParameter("userId")+request.getParameter("date1")+request.getParameter("date2"));
-
         if(request.getParameter("userId")!=null && request.getParameter("userId")!=""){
             param.setUserid(Long.valueOf(request.getParameter("userId")));
         }
-
         List<Paper> papers=articleService.getArticleListByCon(param);
         Gson gson=new Gson();
-        System.out.print(gson.toJson(papers));
         return gson.toJson(papers);
     }
     static boolean checknull(String date){

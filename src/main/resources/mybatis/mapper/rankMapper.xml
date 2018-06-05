@@ -9,7 +9,8 @@
             type,
             updateDate,
             heat,
-            status
+            status，
+            typeid
 
         ]]>
     </sql>
