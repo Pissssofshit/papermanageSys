@@ -4,6 +4,7 @@ import com.example.rank.model.User;
 import com.example.rank.param.UserParam;
 
 import com.example.rank.service.UserService;
+import com.example.rank.util.CrossDomain;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.cfg.HandlerInstantiator;
 import com.fasterxml.jackson.databind.cfg.MapperConfig;
@@ -24,26 +25,18 @@ public class UserController extends HandlerInstantiator {
     @Resource
     UserService userService;
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(HttpServletResponse response, HttpServletRequest request, UserParam param) {
-        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, accept, content-type, xxxx");
-        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-        response.setHeader( "Access-Control-Allow-Credentials","true" );
-        System.out.print("11111111111111111");
-        param.setIphone(request.getParameter("username"));
-        param.setPassword(request.getParameter("password"));
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
         User user=userService.login(param);
         Gson gson=new Gson();
         if(user!=null){
             request.getSession().setAttribute("USER",user);
             request.getSession().setMaxInactiveInterval(30 * 60);
-            System.out.print("session"+gson.toJson(request.getSession().getAttribute("USER"))+"session");
-            System.out.print(gson.toJson(user));
             return gson.toJson(user);
         }
-
-        return gson.toJson("flase");
+        return gson.toJson("false");
     }
 
     @Override
