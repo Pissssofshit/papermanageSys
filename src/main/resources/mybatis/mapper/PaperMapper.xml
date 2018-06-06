@@ -15,20 +15,7 @@
 
         ]]>
     </sql>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_ranklist
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
 
-  <select id="getRankBySortType" resultType="com.example.rank.model.rank" parameterType="java.lang.String" >
-    SELECT
-    <include refid="requestAllFields"/>
-    FROM
-    tb_ranklist
-    order by
-    ${sortType} DEC
-
-  </select>
   <select id="getPapers" resultType="com.example.rank.model.Paper">
     SELECT
     <include refid="requestAllFields"/>
