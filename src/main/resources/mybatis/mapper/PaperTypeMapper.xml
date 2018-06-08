@@ -6,6 +6,7 @@
         <![CDATA[
             id,
            name,
+           userid 
 
         ]]>
     </sql>
@@ -15,16 +16,20 @@
     <include refid="requestAllFields"/>
     FROM
     tb_paper_type
+    <where>
+        userid=#{userid}
+    </where>
 
   </select>
-  <update id="updateHeat" parameterType="java.lang.Integer">
-    UPDATE
-    tb_paper_type
-    SET
-    name=#{name}
-    WHERE id#{id}
-  </update>
 
+<delete id="delete" parameterType="com.example.rank.param.DeletePaperTypeParam" >
+    delete from tb_paper_type
+    <where>
+        name=#{name}
+        and
+        userid=#{userid}
+    </where>
+</delete>
 
 
 
@@ -33,12 +38,13 @@
 
     <trim prefix="(" suffix=")" prefixOverrides=",">
       <if test="null!=name and ''!=name">,name</if>
+      <if test="null!=userid">,userid</if>
 
     </trim>
     VALUES
     <trim prefix="(" suffix=")" prefixOverrides=",">
       <if test="null!=name and ''!=name">,#{name}</if>
-
+      <if test="null!=userid">,#{userid}</if>
     </trim>
 
   </insert>

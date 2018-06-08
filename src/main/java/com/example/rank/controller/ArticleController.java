@@ -26,16 +26,25 @@ public class ArticleController {
 
 
     @ResponseBody
+    @RequestMapping(value = "/deletePaper",method = RequestMethod.GET)
+    public String deletePaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
+        User user=(User)request.getSession(false).getAttribute("USER");
+        param.setUserid(user.getId());
+        articleService.deleteArticle(param);
+        return "SUCCESS";
+    }
+
+
+    @ResponseBody
     @RequestMapping(value = "/viewpaper",method = RequestMethod.GET)
     public String viewPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
-        List<Paper> papers=articleService.getArticleListByCon(param);
-        for(Paper paper:papers){
-            Gson gson=new Gson();
-            return gson.toJson(paper);
-        }
-        return null;
+        Paper paper=articleService.viewPaper(param);
+        Gson gson=new Gson();
+        return gson.toJson(paper);
     }
 
     @ResponseBody

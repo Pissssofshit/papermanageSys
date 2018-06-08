@@ -1,17 +1,14 @@
 package com.example.rank.dao;
 
 import com.example.rank.model.PaperType;
+import com.example.rank.param.AddPaperTypeParam;
+import com.example.rank.param.DeletePaperTypeParam;
+
+import java.util.List;
 
 public interface PaperTypeMapper {
-    int deleteByPrimaryKey(Long id);
+    void add(AddPaperTypeParam param);
+    List<PaperType> getPaperTypes(Long userId);
+    void delete(DeletePaperTypeParam param);
 
-    int insert(PaperType record);
-
-    int insertSelective(PaperType record);
-
-    PaperType selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(PaperType record);
-
-    int updateByPrimaryKey(PaperType record);
 }

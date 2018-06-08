@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface PaperMapper {
     void add(AddPaperParam param);
+    void delete(PaperParam param);
     List<Paper> getPapers();
+    void updateReadNum(PaperParam param);
     List<Paper> getPapersByCon(@Param("id")Long id,@Param("userId")Long userId, @Param("title")String title, @Param("state")String state, @Param("createTimeOne")Date createTimeOne, @Param("createTimeTwo")Date createTimeTwo, @Param("updatedTimeOne")Date updatedTimeOne, @Param("updatedTimeTwo")Date updatedTimeTwo);
 }

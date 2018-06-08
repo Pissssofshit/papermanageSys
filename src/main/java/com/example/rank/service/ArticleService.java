@@ -12,6 +12,11 @@ public interface ArticleService {
      */
     void addArticle(AddPaperParam param);
 
+    /**
+     * 删除文章
+     */
+    void deleteArticle(PaperParam param);
+
 
     /**
      * 更新文章
@@ -29,6 +34,10 @@ public interface ArticleService {
 
     List<Paper> getArticleListByCon(PaperParam param);
 
+    /**
+     *查看文章
+     */
+    Paper viewPaper(PaperParam param);
 
 
 }

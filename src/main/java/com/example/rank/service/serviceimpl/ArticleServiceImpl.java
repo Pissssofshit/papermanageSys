@@ -15,6 +15,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     PaperMapper paperMapper;
 
+    @Resource
+    ArticleService articleService;
+
     @Override
     public void addArticle(AddPaperParam param) {
         param.setCreatedtime(new Date());
@@ -24,18 +27,32 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public void deleteArticle(PaperParam param) {
+        paperMapper.delete(param);
+    }
+
+    @Override
     public List<Paper> getArticleList() {
         return paperMapper.getPapers();
     }
 
     @Override
     public List<Paper> getArticleListByCon(PaperParam param) {
-        System.out.print(param.getUserid()+param.getTitle()+param.getState());
-
         return paperMapper.getPapersByCon(param.getId(),param.getUserid(),param.getTitle(),param.getState(),param.getCreatedtimeOne(),param.getCreatedtimeTwo(),param.getUpdatedtimeOne(),param.getUpdatedtimeTwo());
 
 
 
+    }
+
+    @Override
+    public Paper viewPaper(PaperParam param) {
+        List<Paper> papers=articleService.getArticleListByCon(param);
+        for(Paper paper:papers){
+            param.setReadNum(paper.getReadNum()+1);
+            paperMapper.updateReadNum(param);
+            return paper;
+        }
+        return null;
     }
 
 }

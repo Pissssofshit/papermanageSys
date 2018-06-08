@@ -13,53 +13,85 @@
             read_num as readNum,
             state
 
+
         ]]>
     </sql>
 
   <select id="getPapers" resultType="com.example.rank.model.Paper">
-    SELECT
-    <include refid="requestAllFields"/>
-    FROM
-    tb_paper
+    select a.*,b.name as typeName from(
+      SELECT
+       t.id id,
+       t.title title,
+       t.createdtime createdtime,
+       t.updatedtime updatedtime,
+       t.content content,
+       t.userId userId,
+       t.read_num as readNum,
+       t.state state,
+       t.typeid typeid
+       from
+       tb_paper t
+    )a left join
+    tb_paper_type b on
+    b.id=a.typeid
+
 
   </select>
-  <update id="updateHeat" parameterType="java.lang.Integer">
+  <update id="updateReadNum" parameterType="com.example.rank.param.PaperParam">
     UPDATE
-    tb_ranklist
+    tb_paper
     SET
-    heat=#{heat}
-    WHERE id#{id}
+    read_num=#{readNum}
+    WHERE id=#{id}
   </update>
   <select id="getPapersByCon" resultType="com.example.rank.model.Paper">
+    select a.*,b.name as typeName from(
     SELECT
-    <include refid="requestAllFields"/>
-    FROM
-    tb_paper
+    t.id id,
+    t.title title,
+    t.createdtime createdtime,
+    t.updatedtime updatedtime,
+    t.content content,
+    t.userId userId,
+    t.read_num as readNum,
+    t.state state,
+    t.typeid typeid
+    from
+    tb_paper t
     <where>
       <if test="id != null and id != ''">
         AND id=#{id}
       </if>
-    <if test="userId != null and userId != ''">
-      AND userId=#{userId}
-    </if>
-    <if test="title != null and title != ''">
-      AND title LIKE concat('%',#{title},'%')
-    </if>
-    <if test="state != null and state != ''">
-      AND state=#{state}
-    </if>
-    <if test="createTimeOne !=null  and createTimeTwo !=null">
-      AND createdtime between #{createTimeOne} and #{createTimeTwo}
+      <if test="userId != null and userId != ''">
+        AND userId=#{userId}
+      </if>
+      <if test="title != null and title != ''">
+        AND title LIKE concat('%',#{title},'%')
+      </if>
+      <if test="state != null and state != ''">
+        AND state=#{state}
+      </if>
+      <if test="createTimeOne !=null  and createTimeTwo !=null">
+        AND createdtime between #{createTimeOne} and #{createTimeTwo}
 
-    </if>
+      </if>
       <if test="updatedTimeOne !=null  and updatedTimeTwo !=null">
         AND updatedtime between #{updatedTimeOne} and #{updatedTimeTwo}
 
       </if>
     </where>
+    )a left join
+    tb_paper_type b on
+    b.id=a.typeid
+
   </select>
 
-
+<delete id="delete" parameterType="com.example.rank.param.PaperParam">
+  delete from tb_paper
+  <where>
+    id=#{id}
+  </where>
+</delete>
 
 
   <insert id="add" useGeneratedKeys="true" parameterType="com.example.rank.param.AddPaperParam" keyProperty="id">
