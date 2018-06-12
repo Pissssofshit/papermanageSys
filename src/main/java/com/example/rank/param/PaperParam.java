@@ -16,10 +16,20 @@ public class PaperParam {
     private Date updatedtimeTwo;
 
     private Long userid;
+    private String content;
+
 
     private Integer readNum;
 
     private String state;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Long getId() {
         return id;

@@ -19,8 +19,21 @@ public interface ArticleService {
 
 
     /**
+     * 提交审核申请
+     */
+    void submitCheckArticle(PaperParam param);
+
+
+    /**
      * 更新文章
      */
+    void updateArticle(PaperParam param);
+
+
+    /**
+     * 审核文章
+     */
+    void checkArticle(PaperParam param);
 
 
     /**

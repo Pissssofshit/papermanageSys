@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class AddPaperParam {
     private Long id;
+    private int typeid;
 
     private String title;
 
@@ -18,6 +19,15 @@ public class AddPaperParam {
     private String state;
 
     private String content;
+
+    public int getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(int typeid) {
+        this.typeid = typeid;
+    }
+
     public Long getId() {
         return id;
     }

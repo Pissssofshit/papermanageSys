@@ -22,13 +22,33 @@ public class ArticleServiceImpl implements ArticleService {
     public void addArticle(AddPaperParam param) {
         param.setCreatedtime(new Date());
         param.setReadNum(1);
-        param.setState("false");
+        param.setState("登记中");
         paperMapper.add(param);
     }
 
     @Override
     public void deleteArticle(PaperParam param) {
         paperMapper.delete(param);
+    }
+
+    @Override
+    public void submitCheckArticle(PaperParam param) {
+        param.setState("待审核");
+        paperMapper.submitCheck(param);
+
+
+    }
+
+    @Override
+    public void updateArticle(PaperParam param) {
+        param.setUpdatedtimeOne(new Date());
+        paperMapper.updateContent(param);
+
+    }
+
+    @Override
+    public void checkArticle(PaperParam param) {
+        paperMapper.check(param);
     }
 
     @Override

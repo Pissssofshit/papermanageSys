@@ -38,6 +38,16 @@ public class UserController extends HandlerInstantiator {
         }
         return gson.toJson("false");
     }
+    @ResponseBody
+    @RequestMapping(value = "/getLoginInfo",method = RequestMethod.POST)
+    public String getLoginInfo(HttpServletResponse response,HttpServletRequest request){
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
+        User user=(User)request.getSession(false).getAttribute("USER");
+        Gson gson=new Gson();
+        return gson.toJson(user);
+
+    }
 
     @Override
     public JsonDeserializer<?> deserializerInstance(DeserializationConfig deserializationConfig, Annotated annotated, Class<?> aClass) {

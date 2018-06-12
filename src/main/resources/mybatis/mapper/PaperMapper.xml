@@ -94,6 +94,36 @@
 </delete>
 
 
+  <update id="submitCheck" parameterType="com.example.rank.param.PaperParam">
+    update tb_paper
+    set
+    state=#{state}
+    <where>
+      id=#{id}
+    </where>
+
+  </update>
+
+  <update id="updateContent" parameterType="com.example.rank.param.PaperParam">
+    update tb_paper
+    set
+    content=#{content},
+    updatedtime=#{updatedtimeOne}
+    <where>
+      id=#{id}
+    </where>
+  </update>
+
+  <update id="check" parameterType="com.example.rank.param.PaperParam">
+    update tb_paper
+    set
+    state=#{state}
+    <where>
+      id=#{id}
+    </where>
+  </update>
+
+
   <insert id="add" useGeneratedKeys="true" parameterType="com.example.rank.param.AddPaperParam" keyProperty="id">
     INSERT INTO tb_paper
 
@@ -105,7 +135,7 @@
       <if test="null!=userid">,userid</if>
       <if test="null!=readNum ">,read_num</if>
       <if test="null!=state" >,state</if>
-
+      <if test="null!=typeid" >,typeid</if>
     </trim>
     VALUES
     <trim prefix="(" suffix=")" prefixOverrides=",">
@@ -116,7 +146,7 @@
       <if test="null!=userid">,#{userid}</if>
       <if test="null!=readNum ">,#{readNum}</if>
       <if test="null!=state" >,#{state}</if>
-
+      <if test="null!=typeid" >,#{typeid}</if>
     </trim>
 
   </insert>

@@ -38,6 +38,39 @@ public class ArticleController {
 
 
     @ResponseBody
+    @RequestMapping(value = "/updatePaper",method = RequestMethod.GET)
+    public String updatePaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
+        articleService.updateArticle(param);
+        return "SUCCESS";
+
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/checkPaper",method = RequestMethod.GET)
+    public String checkPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
+        articleService.checkArticle(param);
+        return "SUCCESS";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/submitCheckPaper",method = RequestMethod.GET)
+    public String submitCheckPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
+        CrossDomain crossDomain=new CrossDomain();
+        crossDomain.solveCrossDomain(response);
+        User user=(User)request.getSession(false).getAttribute("USER");
+        param.setUserid(user.getId());
+        articleService.submitCheckArticle(param);
+        return "SUCCESS";
+    }
+
+
+    @ResponseBody
     @RequestMapping(value = "/viewpaper",method = RequestMethod.GET)
     public String viewPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
