@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rank.dao.LogCheckPaperMapper">
+  <sql id="requestAllFields">
+        <![CDATA[
+            id,
+            paperId,
+            checkUserid,
+            updatedState,
+            createdtime
+
+
+        ]]>
+    </sql>
+
+  <select id="getLogs" resultType="com.example.rank.model.LogCheckPaper" parameterType="com.example.rank.param.LogCheckPaperParam">
+    SELECT a.*,b.title as paperName from (
+    select
+    t.id id,
+    t.paperId paperId,
+    t.checkUserid checkUserid,
+    t.updatedState updatedState,
+    t.createdtime createdtime
+    from
+    tb_log_check_paper t
+    )a left join
+    tb_paper b on
+    b.id=a.paperId
+    LIMIT
+    #{pageStart},#{pageSize}
+
+
+
+
+  </select>
+  
+  <select id="gettotal" resultType="Integer">
+    select
+    count(*)
+    from tb_log_check_paper
+  </select>
+
+  <insert id="add" parameterType="com.example.rank.model.LogCheckPaper">
+    INSERT INTO  tb_log_check_paper
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+      <if test="null!=id">,id</if>
+      <if test="null!=createdtime">,createdtime</if>
+      <if test="null!=updatedState and ''!=updatedState">,updatedState</if>
+      <if test="null!=paperId">,paperId</if>
+      <if test="null!=checkUserid ">,checkUserid</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" prefixOverrides=",">
+      <if test="null!=id">,#{id}</if>
+      <if test="null!=createdtime">,#{createdtime}</if>
+      <if test="null!=updatedState and ''!=updatedState">,#{updatedState}</if>
+      <if test="null!=paperId">,#{paperId}</if>
+      <if test="null!=checkUserid ">,#{checkUserid}</if>
+    </trim>
+  </insert>
+
+
+</mapper>

@@ -3,8 +3,10 @@ package com.example.rank.service.serviceimpl;
 import com.example.rank.dao.PaperMapper;
 import com.example.rank.model.Paper;
 import com.example.rank.param.AddPaperParam;
+import com.example.rank.param.LogCheckPaperParam;
 import com.example.rank.param.PaperParam;
 import com.example.rank.service.ArticleService;
+import com.example.rank.service.LogCheckPaperService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +19,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     ArticleService articleService;
+
+    @Resource
+    LogCheckPaperService logCheckPaperService;
 
     @Override
     public void addArticle(AddPaperParam param) {
@@ -49,6 +54,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void checkArticle(PaperParam param) {
         paperMapper.check(param);
+        LogCheckPaperParam logCheckPaperParam=new LogCheckPaperParam();
+        logCheckPaperParam.setCheckUserid(param.getUserid());
+        logCheckPaperParam.setCreatedtime(new Date());
+        logCheckPaperParam.setPaperId(param.getId());
+        logCheckPaperParam.setUpdatedState(param.getState());
+        logCheckPaperService.addLogs(logCheckPaperParam);
     }
 
     @Override

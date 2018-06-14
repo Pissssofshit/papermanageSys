@@ -7,6 +7,7 @@ import com.example.rank.param.PaperParam;
 import com.example.rank.service.ArticleService;
 import com.example.rank.util.CrossDomain;
 import com.google.gson.Gson;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,6 +54,8 @@ public class ArticleController {
     public String checkPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
+        User user=(User)request.getSession(false).getAttribute("USER");
+        param.setUserid(user.getId());
         articleService.checkArticle(param);
         return "SUCCESS";
     }
@@ -141,10 +144,12 @@ public class ArticleController {
         }catch (ParseException e) {
             e.printStackTrace();
         }
+
         if(request.getParameter("userId")!=null && request.getParameter("userId")!=""){
             param.setUserid(Long.valueOf(request.getParameter("userId")));
         }
         List<Paper> papers=articleService.getArticleListByCon(param);
+
         Gson gson=new Gson();
         return gson.toJson(papers);
     }
