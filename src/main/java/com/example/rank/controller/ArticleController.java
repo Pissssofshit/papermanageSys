@@ -27,7 +27,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/deletePaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/deletePaper",method = RequestMethod.POST)
     public String deletePaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -39,7 +39,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/updatePaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/updatePaper",method = RequestMethod.POST)
     public String updatePaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -50,7 +50,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/checkPaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/checkPaper",method = RequestMethod.POST)
     public String checkPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -62,7 +62,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/submitCheckPaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/submitCheckPaper",method = RequestMethod.POST)
     public String submitCheckPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -74,7 +74,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/viewpaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/viewpaper",method = RequestMethod.POST)
     public String viewPaper(HttpServletResponse response, HttpServletRequest request, PaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -84,7 +84,7 @@ public class ArticleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addpaper",method = RequestMethod.GET)
+    @RequestMapping(value = "/addpaper",method = RequestMethod.POST)
     public String addPaper(HttpServletResponse response, HttpServletRequest request, AddPaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -97,7 +97,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/getPaperList",method = RequestMethod.GET)
+    @RequestMapping(value = "/getPaperList",method = RequestMethod.POST)
     public String getArticleList(HttpServletResponse response){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -108,7 +108,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/getPaperListByUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/getPaperListByUser",method = RequestMethod.POST)
     public String getArticleListByUser(HttpServletResponse response,PaperParam param,HttpServletRequest request){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -121,7 +121,7 @@ public class ArticleController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/getPaperListByCon",method = RequestMethod.GET)
+    @RequestMapping(value = "/getPaperListByCon",method = RequestMethod.POST)
     public String getArticleListBycon(PaperParam param,HttpServletResponse response, HttpServletRequest request){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);

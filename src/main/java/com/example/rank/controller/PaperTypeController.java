@@ -48,7 +48,7 @@ public class PaperTypeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/deletePaperType",method = RequestMethod.GET)
+    @RequestMapping(value = "/deletePaperType",method = RequestMethod.POST)
     public String deletePaperType(HttpServletResponse response, HttpServletRequest request, DeletePaperTypeParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);

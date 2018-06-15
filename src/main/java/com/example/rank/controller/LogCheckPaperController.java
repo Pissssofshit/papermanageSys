@@ -24,7 +24,7 @@ public class LogCheckPaperController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/getLogs",method = RequestMethod.GET)
+    @RequestMapping(value = "/getLogs",method = RequestMethod.POST)
     public String getLogs(HttpServletResponse response, HttpServletRequest request,LogCheckPaperParam param){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
@@ -36,7 +36,7 @@ public class LogCheckPaperController {
 
     }
     @ResponseBody
-    @RequestMapping(value = "/getTotal",method = RequestMethod.GET)
+    @RequestMapping(value = "/getTotal",method = RequestMethod.POST)
     public int getTotal(HttpServletResponse response, HttpServletRequest request){
         CrossDomain crossDomain=new CrossDomain();
         crossDomain.solveCrossDomain(response);
